@@ -6,8 +6,15 @@
 ##################### Variables
 dir=~/.dotfiles
 bckupdir=~/.dotfilesbckup # Backup dir
-files="bashrc vimrc"      # Files to link
+#files="bashrc vimrc"     # Files to link
+files=$@                  # Files to link
 #####################
+
+if (( $# == 0 ))
+then
+  echo "No files specified, exiting"
+  exit 1
+fi
 
 if [ ! -d "$bckupdir" ] 
 then
