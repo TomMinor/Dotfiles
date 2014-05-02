@@ -1,12 +1,21 @@
-" All of this is stolen from other vimrc's yay
+set nocompatible 
+colors desert 
 
-set showcmd
-set nocompatible
+"Make splits nicer
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
+set splitbelow
+set splitright
 
-" File stuff
+" Clear the search highlight
+command C let @/=""
+
+""" File stuff
 filetype on
-filetype plugin on
+filetype plugin indent on
 syntax enable
 set grepprg=grep\ -nH\ $*
 set noautowrite
@@ -22,7 +31,6 @@ set softtabstop=2
 set shiftwidth=2
 set shiftround
 set copyindent
-set cindent
 set preserveindent
 
 
@@ -98,20 +106,19 @@ set cul
 
 set lazyredraw
 
-
 nore ; :
 nore , ;
+nmap l; :!
 
-
-noremap ( ()<Esc>i
-inoremap [ []<Esc>i
-inoremap { {<CR>}<Esc>O
-autocmd Syntax html,vim inoremap < <lt>><Esc>i| inoremap > <c-r>=ClosePair('>')<CR>
-inoremap ) <c-r>=ClosePair(')')<CR>
-inoremap ] <c-r>=ClosePair(']')<CR>
-inoremap } <c-r>=CloseBracket()<CR>
-inoremap " <c-r>=QuoteDelim('"')<CR>
-inoremap ' <c-r>=QuoteDelim("'")<CR>
+""noremap ( ()<Esc>i
+""inoremap [ []<Esc>i
+""inoremap { {<CR>}<Esc>O
+""autocmd Syntax html,vim inoremap < <lt>><Esc>i| inoremap > <c-r>=ClosePair('>')<CR>
+""inoremap ) <c-r>=ClosePair(')')<CR>
+""inoremap ] <c-r>=ClosePair(']')<CR>
+""inoremap } <c-r>=CloseBracket()<CR>
+""inoremap " <c-r>=QuoteDelim('"')<CR>
+""inoremap ' <c-r>=QuoteDelim("'")<CR>
 
 function ClosePair(char)
  if getline('.')[col('.') - 1] == a:char
@@ -143,3 +150,4 @@ function QuoteDelim(char)
  return a:char.a:char."\<Esc>i"
  endif
  endf
+
